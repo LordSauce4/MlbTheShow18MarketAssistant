@@ -12,7 +12,7 @@ $('.marketplace-filter-item').each(function () {
     };
     objectArray.push(row);
 });
-// Make room for MLB The Show 18 Market Assistant supertable
+// Thanks for the links! Goodbye!
 $('.marketplace-filter-list').remove();
 $(objectArray).each(function () {
     tableHTML += '<tr><td class="nameRow"><a href="' + $(this)[0].url + '">' + $(this)[0].name + '</a></td><td class="buyNowRow">-</td><td class="sellNowRow">-</td><td class="datRow">-</td><td class="pdRow">-</td><td class="soldInHourRow">-</td></tr>';
