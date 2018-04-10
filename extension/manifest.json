@@ -1,6 +1,6 @@
 {
     "name": "MLB The Show 18 Market Assistant",
-    "version": "2.2",
+    "version": "1",
     "description": "Modify's theshownation.com's Community Market listings table to make it more useful for profitable trading",
     "background": {
         "scripts": [ "background.js" ]
