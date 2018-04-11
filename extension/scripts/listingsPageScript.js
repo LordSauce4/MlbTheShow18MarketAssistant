@@ -1,7 +1,7 @@
 'use strict';
 // "Market prices on this page are refreshed hourly." Not anymore!!! :D
 $('.marketplace-filter-disclaimer').remove();
-var tableHTML = '<table class="sortable" width= 100%; font-size: 15px;"><thead><tr><th>Name</th><th class="sorttable_numeric">Buy Now</th><th class="sorttable_numeric">Sell Now</th><th class="sorttable_numeric">Profit(After Tax)</th><th class="sorttable_numeric">Difference% (After Tax)</th><th class="sorttable_numeric">Bought/Sold in the past hour</th></thead></tr><tbody>';
+var tableHTML = '<table class="sortable" width=100%; style="font-size:15px;"><thead style="background-color:#151515;font-weight:bold;"><tr><th>Name</th><th class="sorttable_numeric">Buy Now</th><th class="sorttable_numeric">Sell Now</th><th class="sorttable_numeric">Profit(After Tax)</th><th class="sorttable_numeric">Difference% (After Tax)</th><th class="sorttable_numeric">Bought/Sold in the past hour</th></thead></tr><tbody>';
 var objectArray = [];
 $('.marketplace-filter-item').each(function () {
     var name = $(this).find('.marketplace-filter-item-name > a').text();
@@ -35,18 +35,18 @@ $('.sortable > tbody  > tr').each(function () {
         url: rowURL
     }).done(function (data) {
         var parsedData = $(jQuery.parseHTML(data));
-        var buyNowButtonContainer = parsedData.find('.marketplace-card-buy-orders > .marketplace-card-create-forms > .marketplace-card-order-now')[0];
+        var buyNowButtonContainer = parsedData.find(".marketplace-card-buy-orders > .marketplace-card-create-forms > .marketplace-card-order-now")[0];
         // If somebody is offering to sell this item, get price
-        if (buyNowButtonContainer != null) { mBuyNowPrice = buyNowButtonContainer.innerText.replace(/\D/g, ''); }
+        if (buyNowButtonContainer != null) { mBuyNowPrice = cleanNumberString(buyNowButtonContainer.innerText); }
         // Don't have to do this but it makes console errors go away
         if (mBuyNowPrice != null) { buyNowRow.html(mBuyNowPrice); }
-        var sellNowButtonContainer = parsedData.find('.marketplace-card-sell-orders > .marketplace-card-create-forms > .marketplace-card-order-now')[0];
+        var sellNowButtonContainer = parsedData.find(".marketplace-card-sell-orders > .marketplace-card-create-forms > .marketplace-card-order-now")[0];
         // If somebody is offering to buy this item, get price
-        if (sellNowButtonContainer != null) { mSellNowPrice = sellNowButtonContainer.innerText.replace(/\D/g, ''); }
+        if (sellNowButtonContainer != null) { mSellNowPrice = cleanNumberString(sellNowButtonContainer.innerText); }
         // Don't have to do this but it makes console errors go away
         if (mSellNowPrice != null) { sellNowRow.html(mSellNowPrice); }
-        parsedData.find('.completed-order').each(function () {
-            var thisDate = getMlbtsDateFromString($(this).find('.date').text());
+        parsedData.find(".completed-order").each(function () {
+            var thisDate = getMlbtsDateFromString($(this).find(".date").text());
             var OneHourAgo = new Date(Date.now());
             OneHourAgo.setHours(OneHourAgo.getHours() - 1);
             // These come in descending order
@@ -67,7 +67,7 @@ $('.sortable > tbody  > tr').each(function () {
             datRow.html(mDifAfterTax);
             var mPercentDiff = (mDifAfterTax / mSellNowPrice) * 100;
             mPercentDiff = precisionRound(mPercentDiff, 2);
-            pdRow.html(mPercentDiff + '%');
+            pdRow.html(mPercentDiff + "%");
         }
     });
 });
@@ -77,7 +77,7 @@ $('.sortable > tbody  > tr').each(function () {
 function getMlbtsDateFromString(dateString) {
     var date;
     var fixedDateString;
-    if (dateString.substring(20, 21) == 'P') {
+    if (dateString.substring(20, 21) == "P") {
         // If PM, add 12 hours and cut off the end bit that keeps dateString from deserializing properly
         var hour = parseInt(dateString.substring(15, 17));
         hour += 12;

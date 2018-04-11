@@ -3,7 +3,7 @@
     "version": "1",
     "description": "Modifys theshownation.com's Community Market listings table to make it more useful for profitable trading",
     "background": {
-        "scripts": [ "background.js" ]
+        "scripts": [ "scripts/background.js" ]
     },
     "browser_action": {
         "default_icon": {
@@ -21,12 +21,13 @@
     "content_scripts": [
         {
             "matches": [ "https://mlb18.theshownation.com/community_market/listings?*" ],
-            "js": [ "jquery-3.3.1.min.js", "listingsScript.js" ],
+            "css": [ "styles/itemPageStyle.css" ],
+            "js": [ "scripts/jquery-3.3.1.min.js", "scripts/common.js", "scripts/listingsPageScript.js" ],
             "run_at": "document_end"
         },
         {
             "matches": [ "https://mlb18.theshownation.com/community_market/listings/*" ],
-            "js": [ "jquery-3.3.1.min.js", "itemScript.js" ],
+            "js": [ "scripts/jquery-3.3.1.min.js", "scripts/common.js", "scripts/itemPageScript.js" ],
             "run_at": "document_end"
         }
     ],

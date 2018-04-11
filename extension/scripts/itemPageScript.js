@@ -8,7 +8,3 @@ if (lowestSellOrderContainer != null) {
     lowestSellOrder = cleanNumberString(lowestSellOrderContainer.innerText);
     $("#create-sell-order-form").find("#price")[0].value = --lowestSellOrder;
 }
-
-function cleanNumberString(numberString) {
-    return Number(numberString.replace(/\D/g, ""));
-}
