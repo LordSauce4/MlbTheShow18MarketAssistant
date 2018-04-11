@@ -1,7 +1,7 @@
 'use strict';
 // "Market prices on this page are refreshed hourly." Not anymore!!! :D
 $('.marketplace-filter-disclaimer').remove();
-var tableHTML = '<table class="sortable" width=100%; style="font-size:15px;"><thead style="background-color:#151515;font-weight:bold;"><tr><th>Name</th><th class="sorttable_numeric">Buy Now</th><th class="sorttable_numeric">Sell Now</th><th class="sorttable_numeric">Profit(After Tax)</th><th class="sorttable_numeric">Difference% (After Tax)</th><th class="sorttable_numeric">Bought/Sold in the past hour</th></thead></tr><tbody>';
+var tableHTML = '<table class="sortable" width=100%; style="font-size:15px;"><thead style="background-color:#151515;font-weight:bold;"><tr><th>Name</th><th class="sorttable_numeric">Buy</th><th class="sorttable_numeric">Sell</th><th class="sorttable_numeric">Profit(After Tax)</th><th class="sorttable_numeric">Difference% (After Tax)</th><th class="sorttable_numeric">Bought/Sold in the past hour</th></thead></tr><tbody>';
 var objectArray = [];
 $('.marketplace-filter-item').each(function () {
     var name = $(this).find('.marketplace-filter-item-name > a').text();
@@ -21,8 +21,8 @@ tableHTML += '</tbody></table>';
 $('.menu-pagination').before('<script type="text/javascript" src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js">');
 $('.menu-pagination').before(tableHTML);
 $('.sortable > tbody  > tr').each(function () {
-    var mBuyNowPrice;
-    var mSellNowPrice;
+    var buyPrice;
+    var sellPrice;
     var mSoldInHour = 0;
     var rowURL = $(this).find('.nameRow > a').attr('href');
     var buyNowRow = $(this).find('.buyNowRow');
@@ -30,21 +30,21 @@ $('.sortable > tbody  > tr').each(function () {
     var datRow = $(this).find('.datRow');
     var pdRow = $(this).find('.pdRow');
     var soldInHourRow = $(this).find('.soldInHourRow');
-    soldInHourRow.html(0);
     $.ajax({
         url: rowURL
     }).done(function (data) {
+        // TODO: context thing https://api.jquery.com/jquery.parsehtml/
         var parsedData = $(jQuery.parseHTML(data));
-        var buyNowButtonContainer = parsedData.find(".marketplace-card-buy-orders > .marketplace-card-create-forms > .marketplace-card-order-now")[0];
+        var buyNowButtonContainer = parsedData.find(".marketplace-card-sell-orders > .marketplace-card-create-forms > .marketplace-card-order-now")[0];
         // If somebody is offering to sell this item, get price
-        if (buyNowButtonContainer != null) { mBuyNowPrice = cleanNumberString(buyNowButtonContainer.innerText); }
+        if (buyNowButtonContainer != null) { buyPrice = cleanNumberString(buyNowButtonContainer.innerText); }
         // Don't have to do this but it makes console errors go away
-        if (mBuyNowPrice != null) { buyNowRow.html(mBuyNowPrice); }
-        var sellNowButtonContainer = parsedData.find(".marketplace-card-sell-orders > .marketplace-card-create-forms > .marketplace-card-order-now")[0];
+        if (buyPrice != null) { buyNowRow.html(buyPrice); }
+        var sellNowButtonContainer = parsedData.find(".marketplace-card-buy-orders > .marketplace-card-create-forms > .marketplace-card-order-now")[0];
         // If somebody is offering to buy this item, get price
-        if (sellNowButtonContainer != null) { mSellNowPrice = cleanNumberString(sellNowButtonContainer.innerText); }
+        if (sellNowButtonContainer != null) { sellPrice = cleanNumberString(sellNowButtonContainer.innerText); }
         // Don't have to do this but it makes console errors go away
-        if (mSellNowPrice != null) { sellNowRow.html(mSellNowPrice); }
+        if (sellPrice != null) { sellNowRow.html(sellPrice); }
         parsedData.find(".completed-order").each(function () {
             var thisDate = getMlbtsDateFromString($(this).find(".date").text());
             var OneHourAgo = new Date(Date.now());
@@ -59,15 +59,15 @@ $('.sortable > tbody  > tr').each(function () {
             }
         });
         soldInHourRow.html(mSoldInHour);
-        // mBuyNowPrice can be null if nobody is offering to sell this item
-        // mSellNowPrice can be null if nobody is offering to buy this item
-        if (mBuyNowPrice != null && mSellNowPrice != null) {
-            var mDifAfterTax = (mBuyNowPrice - (mBuyNowPrice * 0.1)) - mSellNowPrice;
-            mDifAfterTax = precisionRound(mDifAfterTax, 2);
-            datRow.html(mDifAfterTax);
-            var mPercentDiff = (mDifAfterTax / mSellNowPrice) * 100;
-            mPercentDiff = precisionRound(mPercentDiff, 2);
-            pdRow.html(mPercentDiff + "%");
+        // buyPrice can be null if nobody is offering to sell this item
+        // sellPrice can be null if nobody is offering to buy this item
+        if (buyPrice != null && sellPrice != null) {
+            var profit = (sellPrice*.9) - buyPrice;
+            profit = precisionRound(profit, 2);
+            datRow.html(profit);
+            var percentDifference = (profit / buyPrice) * 100;
+            percentDifference = precisionRound(percentDifference, 2);
+            pdRow.html(percentDifference + "%");
         }
     });
 });
