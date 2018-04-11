@@ -20,8 +20,13 @@
     "permissions": [ "tabs" ],
     "content_scripts": [
         {
-            "matches": [ "https://mlb18.theshownation.com/community_market/listings*" ],
-            "js": [ "jquery-3.3.1.min.js", "script.js" ],
+            "matches": [ "https://mlb18.theshownation.com/community_market/listings?*" ],
+            "js": [ "jquery-3.3.1.min.js", "listingsScript.js" ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [ "https://mlb18.theshownation.com/community_market/listings/*" ],
+            "js": [ "jquery-3.3.1.min.js", "itemScript.js" ],
             "run_at": "document_end"
         }
     ],
