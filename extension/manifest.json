@@ -1,0 +1,35 @@
+{
+    "name": "MLB The Show 18 Market Assistant",
+    "version": "3",
+    "description": "Modifys theshownation.com's Community Market listings table to make it more useful for profitable trading",
+    "background": {
+        "scripts": [ "scripts/background.js" ]
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "images/icon16.png",
+            "24": "images/icon24.png",
+            "32": "images/icon32.png"
+        }
+    },
+    "icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "permissions": [ "tabs" ],
+    "content_scripts": [
+        {
+            "matches": [ "https://mlb18.theshownation.com/community_market/listings?*" ],
+            "css": [ "styles/itemPageStyle.css" ],
+            "js": [ "scripts/jquery-3.3.1.min.js", "scripts/moment.js", "scripts/common.js", "scripts/listingsPageScript.js" ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [ "https://mlb18.theshownation.com/community_market/listings/*" ],
+            "js": [ "scripts/jquery-3.3.1.min.js", "scripts/common.js", "scripts/itemPageScript.js" ],
+            "run_at": "document_end"
+        }
+    ],
+    "manifest_version": 2
+}
