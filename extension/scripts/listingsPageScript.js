@@ -47,7 +47,6 @@ $('.sortable > tbody  > tr').each(function () {
         // Don't have to do this but it makes console errors go away
         if (sellPrice != null) { sellNowRow.html(sellPrice); }
         parsedData.find(".completed-order").each(function () {
-            console.log($(this).find(".date").text());
             var thisDate = moment($(this).find(".date").text(), "MMMM DD, YYYY hh:mA").toDate();
             var OneHourAgo = new Date(Date.now());
             OneHourAgo.setHours(OneHourAgo.getHours() - 1);
