@@ -15,6 +15,8 @@ sellOrders.before(temp2);
 temp1.replaceWith(sellOrders);
 temp2.replaceWith(buyOrders);
 
+$($.find(".marketplace-card-info")).remove();
+
 highestBuyOrderContainer = $(".marketplace-card-buy-orders").find("td")[0];
 if (highestBuyOrderContainer != null) {
     highestBuyOrderNumber = cleanNumberString(highestBuyOrderContainer.innerText);
@@ -25,6 +27,7 @@ if (lowestSellOrderContainer != null) {
     lowestSellOrderNumber = cleanNumberString(lowestSellOrderContainer.innerText);
     $("#create-sell-order-form").find("#price")[0].value = lowestSellOrderNumber - 1;
 }
+
 breadcrumbsContainer = $(".breadcrumbs > a");
 itemPath = $(breadcrumbsContainer[2])[0].pathname;
 $.ajax({
@@ -49,7 +52,6 @@ $.ajax({
             });
         }
     });
-
     sellOrders = $(shopList).find(".orders")[1];
     $(sellOrders).find(".order").each(function (index, element) {
         sellOrderPathContainer = $(element).find("a")[0];
