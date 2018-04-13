@@ -21,12 +21,13 @@
     "content_scripts": [
         {
             "matches": [ "https://mlb18.theshownation.com/community_market/listings?*" ],
-            "css": [ "styles/itemPageStyle.css" ],
+            "css": [ "styles/listingsPageStyle.css" ],
             "js": [ "scripts/jquery-3.3.1.min.js", "scripts/moment.js", "scripts/common.js", "scripts/listingsPageScript.js" ],
             "run_at": "document_end"
         },
         {
             "matches": [ "https://mlb18.theshownation.com/community_market/listings/*" ],
+            "css": [ "styles/itemPageStyle.css" ],
             "js": [ "scripts/jquery-3.3.1.min.js", "scripts/common.js", "scripts/itemPageScript.js" ],
             "run_at": "document_end"
         }
