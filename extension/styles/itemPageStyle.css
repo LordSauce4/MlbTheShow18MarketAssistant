@@ -19,8 +19,9 @@ marketplace-card-trends,
 .marketplace-card {
     /*background: url("https://s3.amazonaws.com/mlb-theshownation/tsn18/4/img/actionshots/947f13bfff657c1d56cd5dbd38d6ecf6.jpg") center !important;*/
     background-repeat: no-repeat !important;
-    background-size: cover !important;
+    background-size: contain !important;
     background-color: rgb(44,46,48) !important;
+    background-position: top !important;
 }
 
 .marketplace-main-heading-mlb-card {
