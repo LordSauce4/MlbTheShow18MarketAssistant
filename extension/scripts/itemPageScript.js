@@ -25,8 +25,6 @@ $(".marketplace-card-info-asset img").each(function (indexInArray, value) {
 $(".marketplace-card-info").remove();
 // If we can sell this, tell us
 sellableCount = cleanNumberString($(".marketplace-card-owned")[1].innerHTML);
-// Remove captchas (don't know if this actually works yet)
-$(".g-recaptcha").removeClass("g-recaptcha")
 // Most useful for when you are monitoring a buy order, it sells and the you refresh and see this
 if (sellableCount != 0) {
     alert("You can sell this");
