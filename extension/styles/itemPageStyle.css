@@ -1,38 +1,31 @@
 ﻿form, form .form-block {
     margin: 0 !important;
 }
-
 .marketplace-card-buy-orders,
 .marketplace-card-sell-orders,
-marketplace-card-trends,
+.marketplace-card-trends,
 .marketplace-card-completed-orders {
     background: rgba(44,46,48, 0.8) !important;
     margin: 0 !important;
 }
-
 .marketplace-card-trends-inner,
 .marketplace-card-completed-orders-inner {
     background: rgba(0, 0, 0, 0) !important;
     margin: 0 !important;
 }
-
 .marketplace-card {
-    /*background: url("https://s3.amazonaws.com/mlb-theshownation/tsn18/4/img/actionshots/947f13bfff657c1d56cd5dbd38d6ecf6.jpg") center !important;*/
     background-repeat: no-repeat !important;
     background-size: contain !important;
     background-color: rgb(44,46,48) !important;
     background-position: top !important;
 }
-
-.marketplace-main-heading-mlb-card {
+.marketplace-main-heading {
     text-align: center !important;
 }
-
 .marketplace-card-trends {
     background: rgba(44,46,48, 0.8) !important;
     margin: 0 !important;
 }
-
 .marketplace-card-completed-orders .marketplace-card-trends-inner {
     background: rgba(44,46,48, 0.8) !important;
     margin: 0 !important;
