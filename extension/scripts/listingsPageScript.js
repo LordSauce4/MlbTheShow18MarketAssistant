@@ -3,7 +3,7 @@ $(".marketplace-filter-disclaimer").remove();
 // Default table is no good, drop it
 $(".marketplace-filter-list").remove();
 // Insert our blank table
-tableHTML = '<table class="sortable" width=100%; style="font-size:15px;"><thead style="background-color:#151515;font-weight:bold;"><tr><th>Name</th><th class="sorttable_numeric">Buy</th><th class="sorttable_numeric">Sell</th><th class="sorttable_numeric">Traded/hr</th><th class="sorttable_numeric">Profit%(After Tax)</th></th><th class="sorttable_numeric">Profit%(After Tax)/hr</th></tr></thead><tbody></tbody></table>';
+tableHTML = '<table class="sortable" width=100%; style="font-size:15px;"><thead style="background-color:#151515;font-weight:bold;"><tr><th>Name</th><th class="sorttable_numeric">Buy</th><th class="sorttable_numeric">Sell</th><th class="sorttable_numeric">Traded/hour</th><th class="sorttable_numeric">Profit%(After Tax)</th></th><th class="sorttable_numeric">Profit%(After Tax)/hour</th></tr></thead><tbody></tbody></table>';
 $(".menu-pagination").before(tableHTML);
 // Find how many pages there are
 pageCount = 1;
@@ -48,14 +48,14 @@ for (i = 1; i <= pageCount; i++) {
                         return false;
                     }
                 });
-                rowHtml += "<td>" + tradedPastHour + "</td>";
+                rowHtml += "<td>" + tradedPastHour + "/hour</td>";
                 // buyPrice can be null if nobody is offering to sell this item
                 // sellPrice can be null if nobody is offering to buy this item
                 if (buyPrice != "-" && sellPrice != "-") {
                     profitPercent = getProfitPercentAfterTax(buyPrice, sellPrice);
                     rowHtml += "<td>" + profitPercent + "%</td>";
                     profitPercentAfterTaxPerHour = getProfitPercentAfterTaxPerHour(profitPercent, tradedPastHour);
-                    rowHtml += "<td>" + profitPercentAfterTaxPerHour + "</td></tr>";
+                    rowHtml += "<td>" + profitPercentAfterTaxPerHour + "%/hour</td></tr>";
                 }
                 else {
                     rowHtml += "<td>-</td><td>-</td></tr>";

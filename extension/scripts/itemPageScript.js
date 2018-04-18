@@ -16,7 +16,7 @@ $(".completed-order").each(function () {
 // Write in it a new heading
 clone = $(".marketplace-main-heading h2").clone();
 $(".marketplace-main-heading").append(clone);
-clone[0].innerText = "Traded/hr: " + tradedPerHour.toString();
+clone[0].innerText = "Traded/hour: " + tradedPerHour.toString();
 // Remove some things we know
 $(".marketplace-card-create-order p").remove();
 // Buy/Sell now buttons will always make you lose money, get them out of the way
@@ -53,10 +53,10 @@ if (lowestSellOrderContainer != null) {
 }
 // Calculate profit and write it in our a new heading
 profitPercentAfterTax = getProfitPercentAfterTax(highestBuyOrderNumber, lowestSellOrderNumber);
-clone[0].innerText += " Profit%(After Tax): " + profitPercentAfterTax.toString() + "%";
+clone[0].innerText += " | Profit%(After Tax): " + profitPercentAfterTax.toString() + "%";
 
 // Calculate profit/hr and write it in our a new heading
-clone[0].innerText += " Profit%(After Tax)/hr: " + getProfitPercentAfterTaxPerHour(profitPercentAfterTax, tradedPerHour).toString() + "%";
+clone[0].innerText += " | Profit%(After Tax)/hour: " + getProfitPercentAfterTaxPerHour(profitPercentAfterTax, tradedPerHour).toString() + "%";
 // Set background image
 $(".marketplace-card-info-asset img").each(function (indexInArray, value) {
     imgSrc = $(value)[0].src;
