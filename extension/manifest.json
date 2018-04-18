@@ -1,7 +1,7 @@
 {
     "name": "MLB The Show 18 Market Assistant",
     "version": "6",
-    "description": "To use this extension click on the extension icon in Chrome, then log in with your PSN credentials, then click \"Get Stubs Balance\" at the top right, then go back to the Community Market page and select a category.", 
+    "description": "To use this: Click extension icon, log in to PSN, click \"Get Stubs Balance\", go back to Community Market and select a category.", 
     "background": {
         "scripts": [ "scripts/background.js" ]
     },
