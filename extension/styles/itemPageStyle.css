@@ -1,6 +1,7 @@
 ﻿form, form .form-block {
     margin: 1px !important;
 }
+
 .marketplace-card-buy-orders,
 .marketplace-card-sell-orders,
 .marketplace-card-trends,
@@ -8,24 +9,29 @@
     background: rgba(44,46,48, 0.8) !important;
     margin: 0 !important;
 }
+
 .marketplace-card-trends-inner,
 .marketplace-card-completed-orders-inner {
     background: rgba(0, 0, 0, 0) !important;
     margin: 0 !important;
 }
+
 .marketplace-card {
     background-repeat: no-repeat !important;
     background-size: contain !important;
     background-color: rgb(44,46,48) !important;
     background-position: top !important;
 }
+
 .marketplace-main-heading {
     text-align: center !important;
 }
+
 .marketplace-card-trends {
     background: rgba(44,46,48, 0.8) !important;
     margin: 0 !important;
 }
+
 .marketplace-card-completed-orders .marketplace-card-trends-inner {
     background: rgba(44,46,48, 0.8) !important;
     margin: 0 !important;

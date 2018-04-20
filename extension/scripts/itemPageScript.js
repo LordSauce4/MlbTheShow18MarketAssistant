@@ -123,14 +123,3 @@ $.ajax({
         }
     });
 });
-// I hate setting a hard delay, but it won't work if we don't
-setTimeout(
-    function () {
-        // Get rid of captchas
-        // Not entirely sure why this works but I think cloning breaks the callback listener, making submit the only functional part
-        buyOrderFormClone = $("#create-buy-order-form").clone();
-        $("#create-buy-order-form").replaceWith(buyOrderFormClone);
-        sellOrderFormClone = $("#create-sell-order-form").clone();
-        $("#create-sell-order-form").replaceWith(sellOrderFormClone);
-    }, 500
-);
