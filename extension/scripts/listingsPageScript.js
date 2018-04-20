@@ -36,11 +36,10 @@ for (i = 1; i <= pageCount; i++) {
                 rowHtml += "<td>" + sellPrice + "</td>";
                 tradedPastHour = 0;
                 parsedData2.find(".completed-order").each(function () {
-                    thisDate = moment($(this).find(".date").text(), "MMMM DD, YYYY hh:mA").toDate();
-                    OneHourAgo = new Date(Date.now());
-                    OneHourAgo.setHours(OneHourAgo.getHours() - 1);
+                    orderDate = Date.parse($(this).find(".date").text());
+                    oneHourAgo = new Date().addHours(-1);
                     // These come in descending order
-                    if (thisDate > OneHourAgo) {
+                    if (Date.compare(orderDate, oneHourAgo) == 1) {
                         tradedPastHour++;
                     }
                     else {

@@ -1,11 +1,10 @@
 //Get number of this item traded in the past hour
 tradedPerHour = 0;
 $(".completed-order").each(function () {
-    thisDate = moment($(this).find(".date").text(), "MMMM DD, YYYY hh:mA").toDate();
-    OneHourAgo = new Date(Date.now());
-    OneHourAgo.setHours(OneHourAgo.getHours() - 1);
+    orderDate = Date.parse($(this).find(".date").text());
+    oneHourAgo = new Date().addHours(-1);
     // These come in descending order
-    if (thisDate > OneHourAgo) {
+    if (Date.compare(orderDate, oneHourAgo) == 1) {
         tradedPerHour++;
     }
     else {

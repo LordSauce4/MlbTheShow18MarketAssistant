@@ -24,7 +24,7 @@
             "css": [ "styles/listingsPageStyle.css" ],
             "js": [
                 "scripts/jquery-3.3.1.min.js",
-                "scripts/moment.js",
+                "scripts/date.min.js",
                 "scripts/sorttable.js",
                 "scripts/common.js",
                 "scripts/listingsPageScript.js"
@@ -36,7 +36,7 @@
             "css": [ "styles/itemPageStyle.css" ],
             "js": [
                 "scripts/jquery-3.3.1.min.js",
-                "scripts/moment.js",
+                "scripts/date.min.js",
                 "scripts/common.js",
                 "scripts/itemPageScript.js"
             ],
