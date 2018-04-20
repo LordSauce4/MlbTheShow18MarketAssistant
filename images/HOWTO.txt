@@ -1,0 +1,1 @@
+I've been using https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh to set browser size. Strangely you have to set the size to 1294x807 for an Alt+PrtScn screenshot to end up as the Web Store mandated 1280x800 size.
