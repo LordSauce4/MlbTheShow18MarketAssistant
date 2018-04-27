@@ -1,6 +1,6 @@
 {
     "name": "MLB The Show 18 Market Assistant",
-    "version": "8",
+    "version": "9",
     "description": "Use: Go to TheShowNation.com, log in to PSN, click \"Get Stubs Balance\", go to Community Market and select a category.",
     "browser_action": {
         "default_icon": {
@@ -22,28 +22,18 @@
                 "scripts/jquery-3.3.1.min.js",
                 "scripts/date.min.js",
                 "scripts/sorttable.min.js",
-                "scripts/common.js",
                 "scripts/listingsPageScript.js"
             ],
             "run_at": "document_end"
         },
         {
             "matches": [ "*://mlb18.theshownation.com/community_market/listings/*" ],
-            "css": [ "styles/itemPageStyle.css" ],
-            "js": [
-                "scripts/jquery-3.3.1.min.js",
-                "scripts/date.min.js",
-                "scripts/common.js",
-                "scripts/itemPageScript.js"
-            ],
-            "run_at": "document_end"
+            "js": [ "scripts/itemPageScript.js" ],
+            "run_at": "document_start"
         },
         {
             "matches": [ "*://mlb18.theshownation.com/orders" ],
-            "js": [
-                "scripts/jquery-3.3.1.min.js",
-                "scripts/ordersPageScript.js"
-            ],
+            "js": [ "scripts/ordersPageScript.js" ],
             "run_at": "document_start"
         }
     ],
