@@ -1,41 +1,41 @@
 {
-    "name": "MLB The Show 18 Market Assistant",
-    "version": "9",
-    "description": "Use: Go to TheShowNation.com, log in to PSN, click \"Get Stubs Balance\", go to Community Market and select a category.",
-    "browser_action": {
-        "default_icon": {
-            "16": "images/icon16.png",
-            "24": "images/icon24.png",
-            "32": "images/icon32.png"
-        }
+  "name": "MLB The Show 18 Market Assistant",
+  "version": "9",
+  "description": "Use: Go to TheShowNation.com, log in to PSN, click \"Get Stubs Balance\", go to Community Market and select a category.",
+  "browser_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "24": "images/icon24.png",
+      "32": "images/icon32.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [ "*://mlb18.theshownation.com/community_market/listings?*" ],
+      "css": [ "styles/listingsPageStyle.css" ],
+      "js": [
+        "scripts/jquery-3.3.1.min.js",
+        "scripts/date.min.js",
+        "scripts/sorttable.min.js",
+        "scripts/listingsPageScript.js"
+      ],
+      "run_at": "document_end"
     },
-    "icons": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
+    {
+      "matches": [ "*://mlb18.theshownation.com/community_market/listings/*" ],
+      "js": [ "scripts/itemPageScript.js" ],
+      "run_at": "document_start"
     },
-    "content_scripts": [
-        {
-            "matches": [ "*://mlb18.theshownation.com/community_market/listings?*" ],
-            "css": [ "styles/listingsPageStyle.css" ],
-            "js": [
-                "scripts/jquery-3.3.1.min.js",
-                "scripts/date.min.js",
-                "scripts/sorttable.min.js",
-                "scripts/listingsPageScript.js"
-            ],
-            "run_at": "document_end"
-        },
-        {
-            "matches": [ "*://mlb18.theshownation.com/community_market/listings/*" ],
-            "js": [ "scripts/itemPageScript.js" ],
-            "run_at": "document_start"
-        },
-        {
-            "matches": [ "*://mlb18.theshownation.com/orders" ],
-            "js": [ "scripts/ordersPageScript.js" ],
-            "run_at": "document_start"
-        }
-    ],
-    "manifest_version": 2
+    {
+      "matches": [ "*://mlb18.theshownation.com/orders" ],
+      "js": [ "scripts/ordersPageScript.js" ],
+      "run_at": "document_start"
+    }
+  ],
+  "manifest_version": 2
 }
