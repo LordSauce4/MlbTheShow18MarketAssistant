@@ -1,4 +1,15 @@
-//setTimeout(function () { location.reload() }, 15000);
+// Full MLB_Card list is too slow to process and nobody knows how to set filters
+// If they haven't set any, do it for them
+urlSearchParams = new URLSearchParams(window.location.search)
+if (urlSearchParams.get("type") == "MLB_Card" && urlSearchParams.get("min_price") == null && urlSearchParams.get("max_price") == null) {
+  if (urlSearchParams.get("min_price") == null) {
+    urlSearchParams.set("min_price", "5000");
+  }
+  if (urlSearchParams.get("max_price") == null) {
+    urlSearchParams.set("max_price", "50000");
+  }
+  window.location.search = urlSearchParams.toString();
+}
 // "Market prices on this page are refreshed hourly." Not anymore!!! :D
 $(".marketplace-filter-disclaimer").remove()
 // Default table is no good, drop it
@@ -54,7 +65,6 @@ for (i = 1; i <= pageCount; i++) {
 
         // Populate "Open Buy Orders" column
         openBuyOrdersCell = $("<td>")
-        cancelBuyOrder = false
         $(openBuyOrders).find(".order").each(function () {
           openBuyOrderPathContainer = $(this).find("a")[0]
           openBuyOrderPath = openBuyOrderPathContainer.pathname
@@ -70,37 +80,30 @@ for (i = 1; i <= pageCount; i++) {
             }
             else {
               cancelButton.css("color", "red")
-              cancelBuyOrder = true
             }
             openBuyOrdersCell.append(cancelButton[0])
           }
         })
         row.append(openBuyOrdersCell)
-        //if (cancelBuyOrder) { $("form", openBuyOrdersCell).submit() }
 
         // Populate "Create Sell Order" column
         lowestSellOrderContainer = $(".marketplace-card-buy-orders td", itemPageData)[0]
         lowestSellOrderNumber = lowestSellOrderContainer == null ? "-" : cleanNumberString(lowestSellOrderContainer.innerText) - 1
         createSellOrderCell = $("<td>")
-        createSellOrder = false
         // TODO: This number is bugged, check inventory instead
         if (cleanNumberString($(".marketplace-card-owned", itemPageData)[1].innerText) > 0) {
           sellForm = $("#create-sell-order-form", itemPageData)
           $("#price", sellForm).attr("size", 3)
           sellForm.children().last().remove()
           sellForm.children().last()[0].innerText = "Create"
-
           // TODO: Check if the lowest sell order is already ours
           $("#price", sellForm)[0].value = lowestSellOrderNumber
           createSellOrderCell.append(sellForm)
-          createSellOrder = true
         }
         row.append(createSellOrderCell)
-        //if (createSellOrder) { $("form", createSellOrderCell).submit() }
 
         // Populate "Open Sell Orders" column
         openSellOrdersCell = $("<td>")
-        cancelSellOrder = false
         $(openSellOrders).find(".order").each(function () {
           openSellOrderPathContainer = $(this).find("a")[0]
           openSellOrderPath = openSellOrderPathContainer.pathname
@@ -116,13 +119,11 @@ for (i = 1; i <= pageCount; i++) {
             }
             else {
               cancelButton.css("color", "red")
-              cancelSellOrder = true
             }
             openSellOrdersCell.append(cancelButton[0])
           }
         })
         row.append(openSellOrdersCell)
-        //if (cancelSellOrder) { $("form", openSellOrdersCell).submit() }
 
         // Populate "Traded/hour" column
         tradedPastHour = 0
@@ -158,24 +159,6 @@ $(".menu-pagination").remove()
 $(document).ajaxStop(function () {
   ppphTh = document.getElementById("ppph")
   sorttable.innerSortFunction.apply(ppphTh, [])
-
-  // Find the most profitable item we aren't already trading and open an order
-  $("tbody tr").each(function () {
-    if (this.children[4].childElementCount == 0 && this.children[3].childElementCount == 0 && this.children[2].childElementCount == 0 && this.children[1].childElementCount != 0) {
-      //$("form", this.children[1]).submit()
-      return false
-    }
-  })
-
-  // Wait 10 seconds and cancel the least profitable order just to refresh the page and rebalance
-  setTimeout(function () {
-    $($("tbody tr").get().reverse()).each(function () {
-      if (this.children[2].childElementCount != 0) {
-        //$("form", this.children[2]).submit()
-        return false
-      }
-    })
-  }, 10000);
 })
 function cleanNumberString(numberString) {
   return Number(numberString.replace(/\D/g, ""))
