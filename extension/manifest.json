@@ -1,7 +1,7 @@
 {
   "name": "MLB The Show 18 Market Assistant",
   "version": "11",
-  "description": "To use: Click on extension logo. If no data shows go to Shop>Buy Stubs then try again",
+  "description": "To use: Click on extension logo. If no data shows go to Shop>Buy Stubs then try again.",
   "background": {
     "scripts": [ "scripts/background.js" ]
   },
