@@ -1,7 +1,7 @@
 {
   "name": "MLB The Show 18 Market Assistant",
   "version": "11",
-  "description": "Use: Go to TheShowNation.com, log in to PSN, click \"Get Stubs Balance\", go to Community Market and select a category.",
+  "description": "To use: Click on extension logo. If no data shows go to Shop>Buy Stubs then try again",
   "background": {
     "scripts": [ "scripts/background.js" ]
   },
